@@ -109,7 +109,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 AUTH_LDAP_SERVER_URI = 'ldap.uni-duesseldorf.com'
-AUTH_LDAP_USER_DN_TEMPLATE = 'uid=%(user)s,ou=People,dc=example,dc=com'
+AUTH_LDAP_USER_DN_TEMPLATE = 'uid=%(user)s,OU=OpenVPN,OU=Zentrale Services,OU=Heinrich-Heine-Universität,DC=AD,DC=hhu,DC=de'
 AUTH_LDAP_BIND_AS_AUTHENTICATING_USER = True
 AUTH_LDAP_CACHE_GROUPS = True
 AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
@@ -142,3 +142,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+LOGIN_REDIRECT_URL = '/pss'
