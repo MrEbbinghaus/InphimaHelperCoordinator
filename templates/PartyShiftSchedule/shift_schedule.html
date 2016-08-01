@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table class="shiftShedule">
+    <tr>
+        <th>User</th>
+        <th>Position</th>
+        <th>Time</th>
+    </tr>
+    {% for item in query_results %}
+    <tr>
+        <td>{{ item.user }}</td>
+        <td>{{ item.position }}</td>
+        <td>{{ item.time }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
