@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^logout/$', logout, name="logout"),
     url(r'^pss/', include("PartyShiftSchedule.urls")),
     url(r'^admin/', admin.site.urls),
+    url(r'^$', login, name="login")
 ]
