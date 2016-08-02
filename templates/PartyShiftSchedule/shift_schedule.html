@@ -4,15 +4,16 @@
 
 <table class="shiftShedule">
     <tr>
-        <th>User</th>
-        <th>Position</th>
         <th>Time</th>
+        {% for position in positions %}
+        <th colspan={{ position.pref_users }}>{{ position.name }}</th>
+        {% endfor %}
     </tr>
-    {% for item in query_results %}
+    {% for row in rows %}
     <tr>
-        <td>{{ item.user }}</td>
-        <td>{{ item.position }}</td>
-        <td>{{ item.time }}</td>
+        {% for entry in row %}
+            <td>{{ entry }}</td>
+        {% endfor %}
     </tr>
     {% endfor %}
 </table>
