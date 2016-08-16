@@ -5,12 +5,14 @@
 {% block content %}
 
 <table class="shiftSchedule">
-    <tr>
-        <th>Time</th>
-        {% for position in positions %}
-        <th colspan={{ position.pref_users }}>{{ position.name }}</th>
-        {% endfor %}
-    </tr>
+    <thead>
+        <tr>
+            <th>Time</th>
+            {% for position in positions %}
+                <th colspan={{ position.pref_users }}>{{ position.name }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
     {% for row in rows %}
         {{ row | schedule_table_row | safe }}
     {% endfor %}
