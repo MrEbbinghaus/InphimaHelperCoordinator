@@ -8,73 +8,59 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render_to_response, redirect
 
 from datetime import date
+from PartyShiftSchedule.templatetags.schedule_table_tags import toggle_button
+import itertools
 
-from .models import Slot, Position, Party
-
-
-def login_user(request):
-    logout(request)
-    username = password = ''
-    if request.POST:
-        username = request.POST['username']
-        password = request.POST['password']
-    user = authenticate(username=username, password=password)
-
-    if user is not None:
-        login(request, user=user)
-        return render(request, 'PartyShiftSchedule/landing_page.html', {'username': username})
-
-    return HttpResponseRedirect('/login_landing')
+from .models import Slot, Position, Party, Time
 
 
 @login_required(login_url='/login/')
-def foo(request):
+def pss_landing(request):
     user = request.user
     return render(request, 'PartyShiftSchedule/landing_page.html', {'username': user})
 
 
 def shift_schedule(request):
-    query_results = Slot.objects.all()
+    next_party = get_next_party()
     positions = Position.objects.all()
+    rows = list()
 
-    # TODO: Get the party from somewhere else. Dropdown menu, if the tool is used for more then one upcoming party?
-    next_partys = Party.objects.filter(date__gte=date.today()).order_by('date')
-    if len(next_partys) == 0:
-        return
-
-    rows = slots_to_table(next_partys[0])
+    times = Time.objects.filter(party=next_party)
+    rows += [get_schedule_row(time, next_party, request.user) for time in times]
 
     context = {
-        'query_results': query_results,
         'positions': positions,
         'rows': rows
     }
     return render(request, 'PartyShiftSchedule/shift_schedule.html', context)
 
 
-def slots_to_table(party):
-    table = dict()
-    slots = Slot.objects.filter(party=party)
-    positions = Position.objects.all()
-    rows = list()
+def get_schedule_row(time, party, user):
+    slots = Slot.objects.filter(time=time)
+    positions = Position.objects.filter(party=party)
+    row = [time]
 
-    for slot in slots:
-        table[frozenset({slot.time, slot.position})] = slot.user
+    for position in positions:
+        pos_slots = slots.filter(position=position)
+        row += [pos_slot.user for pos_slot in pos_slots]
 
-    for e in table:  # debug
-        print(e, table[e])
+        # pad to the right with buttons up to position.pref_users
+        row = pad_list(row, toggle_button(user), position.pref_users - len(pos_slots))
 
-    # TODO make it beautiful
-    #     for position in positions:
-    #         entrys = list()
-    #         if frozenset({time, position}) in table.keys():
-    #             entrys = [table[frozenset({time, position})]]
-    #             row += entrys
-    #
-    #         if len(entrys) < position.pref_users:
-    #             for i in range(0,  position.pref_users - len(entrys)):
-    #                 row.append("")
-    #
-    #     rows.append(row)
 
-    return rows
+    print(row)
+    return [str(e) for e in row]
+
+
+def pad_list(l, pad, c):
+    for _ in itertools.repeat(None, c):
+        l.append(pad)
+    return l
+
+
+def get_next_party():
+    # TODO: Get the party from somewhere else. Dropdown menu, if the tool is used for more then one upcoming party?
+    next_partys = Party.objects.filter(date__gte=date.today()).order_by('date')
+    if len(next_partys) == 0:
+        return
+    return next_partys[0]

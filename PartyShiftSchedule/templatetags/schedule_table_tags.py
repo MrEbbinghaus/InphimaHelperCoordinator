@@ -1,13 +1,20 @@
 from django import template
 
-register = template.Library
+register = template.Library()
 
 
 @register.filter(is_safe=True)
-def schedule_tablerow(time, args):
+def schedule_table_row(row):
     return """
         <tr>
-            <td>{0}</td>
+            <td class="shift-schedule-head-col">{0}</td>
+            {1}
+        </tr>
+    """.format(row[0], '\n'.join(map(to_td, row[1:])))
 
-        <tr>
-    """.format(time)
+
+def to_td(value):
+    return "<td>{0}</td>".format(value)
+
+def toggle_button(user):
+    return "<a class=tableToggleButton>{0}</a>".format(user)
