@@ -8,6 +8,7 @@ __pycache__/
 local_settings.py
 db.sqlite3
 media
+*/migrations/
 
 
 ### Python ###
@@ -154,5 +155,5 @@ fabric.properties
 
 # *.iml
 # modules.xml
-# .idea/misc.xml 
+# .idea/misc.xml
 # *.ipr

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table class="shiftShedule">
+    <tr>
+        <th>Time</th>
+        {% for position in positions %}
+        <th colspan={{ position.pref_users }}>{{ position.name }}</th>
+        {% endfor %}
+    </tr>
+    {% for row in rows %}
+    <tr>
+        {% for entry in row %}
+            <td>{{ entry }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
