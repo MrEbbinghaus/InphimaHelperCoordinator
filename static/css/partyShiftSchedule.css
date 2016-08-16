@@ -1,0 +1,18 @@
+.shift-schedule {
+    margin: auto;
+}
+
+.shift-schedule table {
+    position: relative;
+    margin: auto;
+    background: white;
+    border-collapse: collapse;
+}
+
+.shift-schedule th {
+    border-bottom: solid;
+}
+
+.shift-schedule shift-schedule-table-head {
+    border-right: solid black;
+}
