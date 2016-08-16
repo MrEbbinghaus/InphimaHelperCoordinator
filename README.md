@@ -13,9 +13,11 @@ tl;dr
 ```bash
 git clone https://github.com/MrOerni/InphimaHelperCoordinator.git
 cd InphimaHelperCoordinator
-mkdir ihc-venv  # or whatever your want to call it
+mkdir ihc-venv  # or whereever you want to place it
 mkvirtualenv -p PATH_TO_PYTHON3_INTERPRETER ihc-venv
-pip3 install -r requirements.txt #  watchout on MacOS 10.11 (consider the tip below)
+source ihc-venc/bin/activate
+pip3 install -r requirements.txt #  watchout on MacOS 10.11! (consider the tip below)
+python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py createsuperuser
 python3 manage.py runserver
@@ -24,6 +26,8 @@ python3 manage.py runserver
 
 #### Step 1:
 clone
+
+Create a local copy of the Project
 ```bash
 git clone https://github.com/MrOerni/InphimaHelperCoordinator.git
 cd InphimaHelperCoordinator
@@ -32,15 +36,19 @@ cd InphimaHelperCoordinator
 #### Step 2 (optional):
 virtualenv
 
-Create a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/).
+Create a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/), so you have a clean working environment for the project 
 ```bash
-mkdir ihc-venv  # or whatever your want to call it
+mkdir ihc-venv  or whereever you want to place it
 mkvirtualenv -p PATH_TO_PYTHON3_INTERPRETER ihc-venv
+source ihc-venc/bin/activate
 ```
+
+I highly recommend you to install [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) for an easy work flow.
 
 #### Step 3:
 install requirements
 
+This will install all the requirements to your virtualenv.
 ```bash
 pip3 install -r requirements.txt
 ```
@@ -51,20 +59,31 @@ pip3 install -r requirements.txt --global-option=build_ext --global-option="-I$(
 ```
 
 #### Step 4:
+make migration scripts
+
+The scripts will be made from every models.py. They create new tables in your database or alter them according to possible changes.
+```bash
+python3 manage.py makemigrations
+```
+
+
+#### Step 5:
 migrate database
+
+Now run the scripts from Step 4..
 ```bash
 python3 manage.py migrate
 ```
 
-#### Step 5:
+#### Step 6:
 create super-user
 
-Create a user to manage your installation from the webbrowser.
+Create a user to manage your installation from the webbrowser. You can edit database tables which you register in `admin.py` in the related app.
 ```bash
 python3 manage.py createsuperuser
 ```
 
-#### Step 6:
+#### Step 7:
 run
 
 If this runs without any warning the server is up. Visit `localhost:8000` with your favourite webbrowser.
@@ -72,5 +91,5 @@ If this runs without any warning the server is up. Visit `localhost:8000` with y
 python3 manage.py runserver
 ```
 
-#### Step 7:
-
+#### Step 8:
+...
