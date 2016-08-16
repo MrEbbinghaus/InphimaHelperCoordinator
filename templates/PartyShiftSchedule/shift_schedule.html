@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
+{% load schedule_table_tags %}
+
 {% block content %}
 
-<table class="shiftShedule">
+<table class="shiftSchedule">
     <tr>
         <th>Time</th>
         {% for position in positions %}
@@ -10,11 +12,7 @@
         {% endfor %}
     </tr>
     {% for row in rows %}
-    <tr>
-        {% for entry in row %}
-            <td>{{ entry }}</td>
-        {% endfor %}
-    </tr>
+        {{ row | schedule_table_row | safe }}
     {% endfor %}
 </table>
 
