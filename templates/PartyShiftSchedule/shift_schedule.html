@@ -2,20 +2,26 @@
 
 {% load schedule_table_tags %}
 
+{% block head%}
+    <link rel="stylesheet" type="text/css" href="/static/css/partyShiftSchedule.css">
+{% endblock %}
+
 {% block content %}
 
-<table class="shiftSchedule">
-    <thead>
-        <tr>
-            <th>Time</th>
-            {% for position in positions %}
-                <th colspan={{ position.pref_users }}>{{ position.name }}</th>
+    <div class="shift-schedule">
+        <table class="shift-schedule-table">
+            <thead>
+            <tr>
+                <th>Time</th>
+                {% for position in positions %}
+                    <th colspan={{ position.pref_users }}>{{ position.name }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            {% for row in rows %}
+                {{ row | schedule_table_row | safe }}
             {% endfor %}
-        </tr>
-    </thead>
-    {% for row in rows %}
-        {{ row | schedule_table_row | safe }}
-    {% endfor %}
-</table>
+        </table>
+    </div>
 
 {% endblock %}
