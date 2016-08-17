@@ -13,6 +13,13 @@
     border-bottom: solid;
 }
 
-.shift-schedule shift-schedule-table-head {
+.shift-schedule-table {
+    width: 50%;
+}
+.shift-schedule-table-head {
     border-right: solid black;
+}
+
+.toggle-button {
+    width: 20%;
 }
