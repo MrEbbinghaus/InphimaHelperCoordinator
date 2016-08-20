@@ -23,11 +23,7 @@
                     <td class="shift-schedule-table-head">{{ time }}</td>
                     {% for position in positions %}
                         <td>
-                            <form>
-                                <input type="checkbox">
-                                <input type="hidden" name="time" value={{ time }}>
-                                <input type="hidden" name="position" value={{ position }}>
-                            </form>
+                            <input type="checkbox" data-time="{{ time }}" data-position="{{ position }}">
                         </td>
                     {% endfor %}
                 </tr>
