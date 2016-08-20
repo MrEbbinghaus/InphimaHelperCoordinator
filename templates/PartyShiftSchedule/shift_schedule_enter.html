@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% load schedule_table_tags %}
 
 {% block heading%}
-    <link rel="stylesheet" type="text/css" href="/static/css/partyShiftSchedule.css">
+    <link rel="stylesheet" type="text/css" href="{% static "PartyShiftSchedule/css/partyShiftSchedule.css" %}">
+    <script src="{% static  "PartyShiftSchedule/js/main.js" %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -13,7 +14,7 @@
             <tr>
                 <th class="shift-schedule-table-head">Times</th>
                 {% for position in positions %}
-                    <th>{{ position }}</th>
+                    <th>{{ position.name }}</th>
                 {% endfor %}
             </tr>
             </thead>
@@ -23,7 +24,7 @@
                     <td class="shift-schedule-table-head">{{ time }}</td>
                     {% for position in positions %}
                         <td>
-                            <input type="checkbox" data-time="{{ time }}" data-position="{{ position }}">
+                            <input type="checkbox" onchange="handleToggleButton(this)" data-time="{{ time.beginning }}" data-position="{{ position.name }}" data-csrftoken="{{ csrf_token }}" >
                         </td>
                     {% endfor %}
                 </tr>

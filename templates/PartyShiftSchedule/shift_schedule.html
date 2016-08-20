@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% load schedule_table_tags %}
 
 {% block heading%}
-    <link rel="stylesheet" type="text/css" href="/static/css/partyShiftSchedule.css">
+    <link rel="stylesheet" type="text/css" href="{% static "PartyShiftSchedule/css/partyShiftSchedule.css" %}">
 {% endblock %}
 
 {% block content %}
