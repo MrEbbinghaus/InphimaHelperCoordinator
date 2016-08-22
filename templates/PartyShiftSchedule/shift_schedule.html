@@ -13,15 +13,24 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Time</th>
+                <th>Zeit</th>
                 {% for position in positions %}
-                    <th colspan={{ position.pref_users }}>{{ position.name }}</th>
+                    <th>{{ position.name }}</th>
                 {% endfor %}
             </tr>
             </thead>
-            {% for row in rows %}
-                {{ row | schedule_table_row | safe }}
+            <tbody>
+            {% for time in times %}
+                <tr>
+                <td>{{ time }}</td>
+                {% for position in positions %}
+                    <td>
+                    {% table_block time position %}
+                    </td>
+                {% endfor %}
+                </tr>
             {% endfor %}
+            </tbody>
         </table>
     </div>
 
