@@ -164,3 +164,7 @@ LOGGING = {
         }
     }
 }
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+# APPEND_SLASH = True
