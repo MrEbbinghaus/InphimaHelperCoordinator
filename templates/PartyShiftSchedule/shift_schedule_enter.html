@@ -3,7 +3,6 @@
 {% load schedule_table_tags %}
 
 {% block heading%}
-    <link rel="stylesheet" type="text/css" href="{% static "PartyShiftSchedule/css/partyShiftSchedule.css" %}">
     <script src="{% static  "PartyShiftSchedule/js/main.js" %}"></script>
 {% endblock %}
 
@@ -21,10 +20,10 @@
             <tbody>
             {% for time in times %}
                 <tr>
-                    <td class="shift-schedule-table-head">{{ time }}</td>
+                    <td class="shift-schedule-table-head">{{ time.beginning|date:"H:i" }}</td>
                     {% for position in positions %}
                         <td>
-                            <input type="checkbox" onchange="handleToggleButton(this)" data-time="{{ time.beginning }}" data-position="{{ position.name }}" data-csrftoken="{{ csrf_token }}" >
+                            <input type="checkbox" onchange="handleToggleButton(this)" data-time="{{ time.id }}" data-position="{{ position.id }}" data-csrftoken="{{ csrf_token }}" >
                         </td>
                     {% endfor %}
                 </tr>

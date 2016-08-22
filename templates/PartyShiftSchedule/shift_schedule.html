@@ -4,7 +4,6 @@
 {% load schedule_table_tags %}
 
 {% block heading%}
-    <link rel="stylesheet" type="text/css" href="{% static "PartyShiftSchedule/css/partyShiftSchedule.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -22,7 +21,7 @@
             <tbody>
             {% for time in times %}
                 <tr>
-                <td>{{ time }}</td>
+                <td>{{ time.beginning|date:"H:i"}}</td>
                 {% for position in positions %}
                     <td>
                     {% table_block time position %}
