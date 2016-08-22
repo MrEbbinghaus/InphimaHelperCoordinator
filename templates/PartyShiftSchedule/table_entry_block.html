@@ -4,7 +4,14 @@
             <li class="list-group-item">{{ entry.user }}</li>
         {% endfor %}
         {% if free_slot %}
-            <li class="list-group-item"></li>
+            <span class="button-checkbox">
+                                <button type="button" class="btn btn-block" data-color="primary">Ich helfe!</button>
+                                <input type="checkbox" class="hidden"
+                                       onchange="handleToggleButton(this)"
+                                       data-time="{{ time.id }}"
+                                       data-position="{{ position.id }}"
+                                       data-csrftoken="{{ csrf_token }}" >
+                            </span>
         {% endif %}
     </ul>
 </div>
