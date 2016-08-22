@@ -110,12 +110,12 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-AUTH_LDAP_SERVER_URI = 'ldap.rz.uni-duesseldorf.com'
-AUTH_LDAP_USER_DN_TEMPLATE = 'uid=%(user)s,OU=OpenVPN,OU=Zentrale Services,OU=Heinrich-Heine-Universität,DC=AD,DC=hhu,DC=de'
+AUTH_LDAP_SERVER_URI = 'ldap.rz.uni-duesseldorf.de'
+AUTH_LDAP_USER_DN_TEMPLATE = 'sAMAccountName=%(user)s,OU=IDMUsers,DC=AD,DC=hhu,DC=de'
 AUTH_LDAP_BIND_AS_AUTHENTICATING_USER = True
-AUTH_LDAP_CACHE_GROUPS = True
-AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
-AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=users,dc=example,dc=com", ldap.SCOPE_SUBTREE, "(uid=%(user))"),
+# AUTH_LDAP_CACHE_GROUPS = True
+# AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
+# AUTH_LDAP_USER_SEARCH = LDAPSearch("OU=IDMUsers,DC=AD,DC=hhu,DC=de", ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
 AUTH_LDAP_USER_ATTR_MAP = {
     "first_name": "givenName",
     "last_name": "sn",
