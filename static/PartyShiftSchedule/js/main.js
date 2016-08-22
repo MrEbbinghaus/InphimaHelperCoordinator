@@ -3,7 +3,7 @@
  */
 
 function handleToggleButton(toggleObj) {
-    $.post('enter/', {
+    $.post('post/enter/', {
         checked: toggleObj.checked,
         time: toggleObj.dataset.time,
         position: toggleObj.dataset.position,
