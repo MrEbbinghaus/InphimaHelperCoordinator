@@ -44,6 +44,7 @@ def set_attr(field, attr):
 
 
 @register.filter("add_error_attr")
+@register.filter("add_error_class")
 @silence_without_field
 def add_error_attr(field, attr):
     if hasattr(field, 'errors') and field.errors:
@@ -68,14 +69,6 @@ def append_attr(field, attr):
 @silence_without_field
 def add_class(field, css_class):
     return append_attr(field, 'class:' + css_class)
-
-
-@register.filter("add_error_class")
-@silence_without_field
-def add_error_class(field, css_class):
-    if hasattr(field, 'errors') and field.errors:
-        return add_class(field, css_class)
-    return field
 
 
 @register.filter("set_data")
@@ -169,15 +162,15 @@ class FieldAttributeNode(Node):
     def render(self, context):
         bounded_field = self.field.resolve(context)
         field = getattr(bounded_field, 'field', None)
-        if (getattr(bounded_field, 'errors', None) and
-            'WIDGET_ERROR_CLASS' in context):
+        if getattr(bounded_field, 'errors', None) and 'WIDGET_ERROR_CLASS' in context:
             bounded_field = append_attr(bounded_field, 'class:%s' %
                                         context['WIDGET_ERROR_CLASS'])
         if field and field.required and 'WIDGET_REQUIRED_CLASS' in context:
             bounded_field = append_attr(bounded_field, 'class:%s' %
                                         context['WIDGET_REQUIRED_CLASS'])
         for k, v in self.set_attrs:
-            bounded_field = set_attr(bounded_field, '%s:%s' % (k,v.resolve(context)))
+            bounded_field = set_attr(bounded_field, '%s:%s' % (k, v.resolve(context)))
         for k, v in self.append_attrs:
-            bounded_field = append_attr(bounded_field, '%s:%s' % (k,v.resolve(context)))
+            bounded_field = append_attr(bounded_field, '%s:%s' % (k, v.resolve(context)))
+
         return bounded_field
