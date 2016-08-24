@@ -29,15 +29,15 @@
   </head>
 
   <body role="document">
-    {% block navbar %}
-    {% endblock navbar %}
 
     <div class="container">
       {% block heading %}{% endblock %}
     </div>
 
     <div class="container" role="main">
+        <div class="well well-default" style="display: inline-block">
       {% block content %}{% endblock %}
+        </div>
     </div>
 
     <!-- Bootstrap core JavaScript

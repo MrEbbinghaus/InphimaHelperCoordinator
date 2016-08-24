@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'PartyShiftSchedule',
+    'utils'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -164,3 +165,15 @@ LOGGING = {
         }
     }
 }
+
+
+# EMAIL SETTINGS
+# Dummy. python -m smtpd -n -c DebuggingServer localhost:1025
+ACCOUNT_ACTIVATION_DAYS = 7
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'testing@example.com'

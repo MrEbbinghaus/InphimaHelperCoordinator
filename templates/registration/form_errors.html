@@ -1,0 +1,10 @@
+{% if form.errors or form.non_field_errors %}
+  <div class="alert alert-block alert-error fade in">
+    <p><div class="alert alert-danger">Oops! There were errors processing your form.</div></p>
+    {% if form.non_field_errors %}
+      <ul class="alert alert-danger">
+        {{ form.non_field_errors|unordered_list }}
+      </ul>
+    {% endif %}
+  </div>
+{% endif %}
