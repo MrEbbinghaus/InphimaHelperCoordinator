@@ -17,7 +17,7 @@ cd InphimaHelperCoordinator
 mkdir ihc-venv  # or whereever you want to place it
 mkvirtualenv -p PATH_TO_PYTHON3_INTERPRETER ihc-venv
 source ihc-venc/bin/activate
-pip3 install -r requirements.txt #  watch out on MacOS 10.11! (consider the tip below)
+pip3 install -r requirements.txt
 python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py createsuperuser
@@ -54,10 +54,6 @@ This will install all the requirements to your virtualenv.
 pip3 install -r requirements.txt
 ```
 
-###### Installation of requirements on MacOS 10.11 (El Capitan)
-```bash
-pip3 install -r requirements.txt --global-option=build_ext --global-option="-I$(xcrun --show-sdk-path)/usr/include/sasl"
-```
 
 #### Step 4:
 make migration scripts
