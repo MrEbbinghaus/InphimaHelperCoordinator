@@ -1,12 +1,13 @@
 # Inphima Helper Coordinator
 [![GitHub version](https://badge.fury.io/gh/MrOerni%2FInphimaHelperCoordinator.svg)](https://badge.fury.io/gh/MrOerni%2FInphimaHelperCoordinator)
-[![Code Climate](https://img.shields.io/codeclimate/github/MrOerni/InphimaHelperCoordinator/badges/gpa.svg)]()
+[![Code Climate](https://img.shields.io/codeclimate/github/MrOerni/InphimaHelperCoordinator/badges/gpa.svg)](https://codeclimate.com/github/MrOerni/InphimaHelperCoordinator)
 
-[![Travis branch](https://img.shields.io/travis/MrOerni/InphimaHelperCoordinator/master.svg?label=master)]()
-[![Travis branch](https://img.shields.io/travis/MrOerni/InphimaHelperCoordinator/develop.svg?label=develop)]()
+###### Builds:
+[![Travis master branch](https://img.shields.io/travis/MrOerni/InphimaHelperCoordinator/master.svg?label=master)](https://travis-ci.org/MrOerni/InphimaHelperCoordinator)
+[![Travis develop branch](https://img.shields.io/travis/MrOerni/InphimaHelperCoordinator/develop.svg?label=develop)](https://travis-ci.org/MrOerni/InphimaHelperCoordinator)
 
 ## Party Shift Scheduler
-A tool to organize a usefull shift planning tool for partys.
+A tool to organize a useful shift planning tool for events.
 
 ## Getting started
 tl;dr
@@ -16,7 +17,7 @@ cd InphimaHelperCoordinator
 mkdir ihc-venv  # or whereever you want to place it
 mkvirtualenv -p PATH_TO_PYTHON3_INTERPRETER ihc-venv
 source ihc-venc/bin/activate
-pip3 install -r requirements.txt #  watchout on MacOS 10.11! (consider the tip below)
+pip3 install -r requirements.txt #  watch out on MacOS 10.11! (consider the tip below)
 python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py createsuperuser
@@ -36,9 +37,9 @@ cd InphimaHelperCoordinator
 #### Step 2 (optional):
 virtualenv
 
-Create a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/), so you have a clean working environment for the project 
+Create a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/), so you have a clean working environment for the project
 ```bash
-mkdir ihc-venv  or whereever you want to place it
+mkdir ihc-venv  or wherever you want to place it
 mkvirtualenv -p PATH_TO_PYTHON3_INTERPRETER ihc-venv
 source ihc-venc/bin/activate
 ```
@@ -78,7 +79,7 @@ python3 manage.py migrate
 #### Step 6:
 create super-user
 
-Create a user to manage your installation from the webbrowser. You can edit database tables which you register in `admin.py` in the related app.
+Create a user to manage your installation from the web browser. You can edit database tables which you register in `admin.py` in the related app.
 ```bash
 python3 manage.py createsuperuser
 ```
@@ -86,7 +87,7 @@ python3 manage.py createsuperuser
 #### Step 7:
 run
 
-If this runs without any warning the server is up. Visit `localhost:8000` with your favourite webbrowser.
+If this runs without any warning the server is up. Visit `localhost:8000` with your favorite web browser.
 ```bash
 python3 manage.py runserver
 ```
