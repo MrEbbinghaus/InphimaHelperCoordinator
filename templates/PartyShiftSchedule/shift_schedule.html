@@ -5,26 +5,27 @@
 
 {% block heading%}
     <script src="{% static  "PartyShiftSchedule/js/main.js" %}"></script>
+    <link rel="stylesheet" href="{% static "PartyShiftSchedule/css/main.css" %}">
 {% endblock %}
 
 {% block content %}
 
-    <div class="shift-schedule">
-        <table class="table">
+    <div class="shift-schedule table-responsive ">
+        <table class="table" style="height: 0px">
             <thead>
             <tr>
-                <th>Zeit</th>
+                <th scope="col">Zeit</th>
                 {% for position in positions %}
-                    <th>{{ position.name }}</th>
+                    <th scope="col">{{ position.name }}</th>
                 {% endfor %}
             </tr>
             </thead>
             <tbody>
             {% for time in times %}
                 <tr>
-                <td>{{ time.beginning|date:"H:i"}}</td>
+                <th scope="row">{{ time.beginning|date:"H:i"}}</th>
                 {% for position in positions %}
-                    <td>
+                    <td style="height: 100%">
                     {% table_block time position user %}
                     </td>
                 {% endfor %}
