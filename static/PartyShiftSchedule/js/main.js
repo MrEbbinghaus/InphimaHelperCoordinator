@@ -8,8 +8,15 @@ function handleToggleButton(toggleObj) {
         time: toggleObj.dataset.time,
         position: toggleObj.dataset.position,
         csrfmiddlewaretoken: toggleObj.dataset.csrftoken
-    });
-    console.log("Huray!");
+    })
+        .done(function() {
+            var username_field = $('#' + toggleObj.dataset.time + toggleObj.dataset.position);
+            if (toggleObj.checked) username_field.fadeTo(0, 100);
+            else username_field.fadeTo(100, 0);
+        })
+        .fail(function() {
+            toggleObj.click();
+        });
 }
 
 $(function () {

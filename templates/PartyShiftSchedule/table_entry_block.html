@@ -3,6 +3,10 @@
         {% for entry in entrys %}
             <li class="list-group-item">{{ entry.user }}</li>
         {% endfor %}
+        <li class="list-group-item" id="{{ time_id }}{{ position_id }}"
+                {% if precheck == "unchecked" %}
+            style="opacity: 0"
+                {% endif %}>{{ user }}</li>
         {% if free_slot %}
             <span class="button-checkbox">
                                 <button type="button" class="btn btn-block" data-color="primary">Ich helfe!</button>
