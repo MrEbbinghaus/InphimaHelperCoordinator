@@ -1,7 +1,7 @@
 <div>
   {% if free_slot %}
             <span class="button-checkbox">
-                                <button type="button" class="btn btn-block" data-color="primary">Ich helfe!</button>
+                                <button id="button-checkbox-{{ time_id }}{{ position_id }}" type="button" class="btn btn-block button-checkbox-btn" data-color="primary">Ich helfe!</button>
                                 <input type="checkbox" class="hidden"
                                        onchange="handleToggleButton(this)"
                                        data-time="{{ time_id }}"
@@ -14,9 +14,9 @@
             <li class="list-group-item">{{ entry.user }}</li>
         {% endfor %}
         <li class="list-group-item" id="{{ time_id }}{{ position_id }}"
-                {% if precheck == "unchecked" %}
-            style="opacity: 0"
-                {% endif %}>{{ user }}</li>
+                {% if precheck == "unchecked" %} style="opacity: 0" {% endif %}>
+          {{ user }}
+        </li>
 
     </ul>
 </div>

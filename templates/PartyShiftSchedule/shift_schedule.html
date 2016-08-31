@@ -21,7 +21,7 @@
             </thead>
             <tbody>
             {% for time in times %}
-                <tr>
+                <tr id="row_{{ time.id }}">
                 <td>{{ time.beginning|date:"H:i"}}</td>
                 {% for position in positions %}
                     <td>

@@ -19,6 +19,18 @@ function handleToggleButton(toggleObj) {
         });
 }
 
+function toggleAllInHisRow(button, disable){
+    console.log("toggle!", disable);
+    $(button).closest('tr').find('.button-checkbox-btn').each(function () {
+        var $button = $(this);
+        if($button.attr('id') == button.attr('id')) return;
+        if (disable) $button.addClass('disabled');
+        else $button.removeClass('disabled');
+        $button.prop('disabled', disable);
+    });
+}
+
+
 $(function () {
     $('.button-checkbox').each(function () {
 
@@ -36,9 +48,12 @@ $(function () {
                 }
             };
 
+        if($checkbox.is(':checked')) toggleAllInHisRow($button, true);
+
         // Event Handlers
         $button.on('click', function () {
             $checkbox.prop('checked', !$checkbox.is(':checked'));
+            toggleAllInHisRow($button, $checkbox.is(':checked'));
             $checkbox.triggerHandler('change');
             updateDisplay();
         });
