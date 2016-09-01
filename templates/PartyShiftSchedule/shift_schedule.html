@@ -10,7 +10,7 @@
 {% block content %}
 
     <div class="row shift-schedule">
-        <table class="table table-transposed">
+        <table class="table {% if transpose %}table-transposed{% endif %}">
             <thead>
             <tr>
                 <th>Zeit</th>
