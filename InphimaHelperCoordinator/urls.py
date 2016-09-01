@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^pss/', include("PartyShiftSchedule.urls", namespace='PartyShiftSchedule')),
     url(r'^admin/', admin.site.urls, name="admin"),
-    url(r'^', include("PartyShiftSchedule.urls", namespace='PartyShiftSchedule')),
+    url(r'^$', RedirectView.as_view(url='/pss')),
 ]
