@@ -15,7 +15,7 @@ function handleToggleButton(toggleObj) {
             else username_field.fadeTo(100, 0);
         })
         .fail(function() {
-            toggleObj.click();
+            console.log("Enter failed!");
         });
 }
 
@@ -48,6 +48,7 @@ $(function () {
                 }
             };
 
+        // set inital disable state
         if($checkbox.is(':checked')) toggleAllInHisRow($button, true);
 
         // Event Handlers
