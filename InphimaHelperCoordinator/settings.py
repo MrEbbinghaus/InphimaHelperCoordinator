@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-import django_auth_ldap
 import ldap
 from django_auth_ldap.config import LDAPSearch
 
@@ -107,16 +106,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'django_auth_ldap.backend.LDAPBackend',
 )
 
-AUTH_LDAP_SERVER_URI = 'ldap.rz.uni-duesseldorf.de'
+AUTH_LDAP_SERVER_URI = 'ldap://ad.hhu.de'
+# AUTH_LDAP_SERVER_URI = 'ldap.uni-duesseldorf.de'
 AUTH_LDAP_USER_DN_TEMPLATE = 'sAMAccountName=%(user)s,OU=IDMUsers,DC=AD,DC=hhu,DC=de'
+# AUTH_LDAP_USER_DN_TEMPLATE = 'uid=%(user)s,ou=People,o=uni-duesseldorf.de,o=internet'
 AUTH_LDAP_BIND_AS_AUTHENTICATING_USER = True
 # AUTH_LDAP_CACHE_GROUPS = True
 # AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
-# AUTH_LDAP_USER_SEARCH = LDAPSearch("OU=IDMUsers,DC=AD,DC=hhu,DC=de", ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+# AUTH_LDAP_USER_SEARCH = LDAPSearch("OU=IDMUsers,DC=AD,DC=hhu,DC=de", ldap.SCOPE_SUBTREE, "(sAMAccountName=%(user)s)")
 AUTH_LDAP_USER_ATTR_MAP = {
     "first_name": "givenName",
     "last_name": "sn",
