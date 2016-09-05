@@ -9,6 +9,8 @@ local_settings.py
 db.sqlite3
 media
 
+### Sensitiv Data ###
+*.secret
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
