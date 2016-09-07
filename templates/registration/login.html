@@ -3,6 +3,11 @@
 {% block content %}
   <div class="row">
   <div class="col-md-offset-4 col-md-4">
+    <div class="container">
+  <p>
+  Bitte mit dem Uni-Kürzel (z.B. mamus100) als Nutzername einloggen!
+  </p>
+  </div>
   {% include 'registration/form_errors.html' %}
   <form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
     {% include 'registration/form_fields.html' %}
