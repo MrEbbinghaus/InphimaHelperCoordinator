@@ -20,7 +20,6 @@ function handleToggleButton(toggleObj) {
 }
 
 function toggleAllInHisRow(button, disable){
-    console.log("toggle!", disable);
     $(button).closest('tr').find('.button-checkbox-btn').each(function () {
         var $button = $(this);
         if($button.attr('id') == button.attr('id')) return;

@@ -24,8 +24,23 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'nwf2^any(8n1mtd5gr-29f^b3r*$uagdo=ka0ve5#7uoihqk=a'
 
+# e.g. use a file to store your key
+# with open('/path/to/secret_key.key') as f:
+#     SECRET_KEY = f.read().strip()
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# SECURE_HSTS_SECONDS = 60 * 60 * 24 * 356
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_HTTPONLY = True
+# X_FRAME_OPTIONS = 'DENY'
 
 ALLOWED_HOSTS = []
 
@@ -110,9 +125,11 @@ AUTHENTICATION_BACKENDS = (
     'django_auth_ldap.backend.LDAPBackend',
 )
 
-AUTH_LDAP_SERVER_URI = 'ldap://example.org'
-AUTH_LDAP_USER_DN_TEMPLATE = 'uid=%(user)s,ou=Users,o=example_org'
-AUTH_LDAP_BIND_AS_AUTHENTICATING_USER = True
+AUTH_LDAP_BIND_DN = '<bind_username>'
+AUTH_LDAP_BIND_PASSWORD = '<bind_password'
+AUTH_LDAP_SERVER_URI = '<ldap_url>'
+AUTH_LDAP_USER_SEARCH = LDAPSearch("<search_base>",
+    ldap.SCOPE_SUBTREE, "(<specific_search>)")
 AUTH_LDAP_USER_ATTR_MAP = {
     "first_name": "givenName",
     "last_name": "sn",
@@ -137,11 +154,8 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
 
 LOGIN_REDIRECT_URL = '/pss'
 
@@ -167,9 +181,9 @@ LOGGING = {
 # Dummy: python -m smtpd -n -c DebuggingServer localhost:1025
 ACCOUNT_ACTIVATION_DAYS = 7
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = '<mail_host>'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '<mail_suer>'
+EMAIL_HOST_PASSWORD = 'SECRET'
 EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'testing@example.com'
+DEFAULT_FROM_EMAIL = '<from email>'
