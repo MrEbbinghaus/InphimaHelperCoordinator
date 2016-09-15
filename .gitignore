@@ -12,6 +12,7 @@ media
 
 ### Sensitiv Data ###
 *.secret
+*.DS_Store
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
