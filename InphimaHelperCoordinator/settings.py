@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'PartyShiftSchedule',
+    'EventShiftSchedule',
     'utils'
 ]
 
@@ -157,7 +157,7 @@ USE_TZ = False
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/pss'
+LOGIN_REDIRECT_URL = '/ess/'
 
 LOGGING = {
     'version': 1,

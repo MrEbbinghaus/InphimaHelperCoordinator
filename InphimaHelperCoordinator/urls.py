@@ -22,7 +22,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
-    url(r'^pss/', include("PartyShiftSchedule.urls", namespace='PartyShiftSchedule')),
+    url(r'^ess/', include("EventShiftSchedule.urls", namespace='EventShiftSchedule')),
     url(r'^admin/', admin.site.urls, name="admin"),
-    url(r'^$', RedirectView.as_view(url='/pss')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^$', RedirectView.as_view(url='/ess')),
+]

@@ -1,0 +1,3 @@
+[submodule "EventShiftSchedule"]
+	path = EventShiftSchedule
+	url = https://github.com/MrOerni/EventShiftSchedule
