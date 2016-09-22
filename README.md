@@ -30,7 +30,7 @@ clone
 
 Create a local copy of the Project
 ```bash
-git clone https://github.com/MrOerni/InphimaHelperCoordinator.git
+git clone --recursive https://github.com/MrOerni/InphimaHelperCoordinator.git
 cd InphimaHelperCoordinator
 ```
 
