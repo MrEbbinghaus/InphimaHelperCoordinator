@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+
 import ldap
-from django_auth_ldap.config import LDAPSearch
+
+from .hhu_settings.hhu_ldap_settings import *
+from .hhu_settings.hhu_smtp_settings import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -119,21 +122,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
+AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'django_auth_ldap.backend.LDAPBackend',
-)
-
-AUTH_LDAP_BIND_DN = '<bind_username>'
-AUTH_LDAP_BIND_PASSWORD = '<bind_password'
-AUTH_LDAP_SERVER_URI = '<ldap_url>'
-AUTH_LDAP_USER_SEARCH = LDAPSearch("<search_base>",
-    ldap.SCOPE_SUBTREE, "(<specific_search>)")
-AUTH_LDAP_USER_ATTR_MAP = {
-    "first_name": "givenName",
-    "last_name": "sn",
-    "email": "mail"
-}
+] + AUTH_LDAP_BACKEND
 
 
 # Internationalization
@@ -174,15 +165,3 @@ LOGGING = {
         }
     }
 }
-
-
-# EMAIL SETTINGS
-# Dummy: python -m smtpd -n -c DebuggingServer localhost:1025
-ACCOUNT_ACTIVATION_DAYS = 7
-
-EMAIL_HOST = '<mail_host>'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = '<mail_suer>'
-EMAIL_HOST_PASSWORD = 'SECRET'
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = '<from email>'
