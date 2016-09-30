@@ -162,3 +162,6 @@ LOGGING = {
         }
     }
 }
+
+NOSE_ARGS = ['--nocapture',
+             '--nologcapture',]
