@@ -14,7 +14,7 @@ checkout:
 ## Customize dependencies
 dependencies:
   pre:
-      - apt-get install libsasl2-dev
+      - sudo apt-get update; sudo apt-get install libsasl2-dev
       - pip install -r requirements.txt
 
   # we automatically cache and restore many dependencies between
