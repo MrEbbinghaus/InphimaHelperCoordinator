@@ -24,7 +24,8 @@ dependencies:
 
 ## Customize test commands
 test:
-    - python manage.py collectstatic
-    - python manage.py makemigrations
-    - python manage.py test
+    override:
+        - python manage.py collectstatic
+        - python manage.py makemigrations
+        - python manage.py test
 
