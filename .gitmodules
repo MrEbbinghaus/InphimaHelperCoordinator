@@ -1,3 +1,6 @@
 [submodule "EventShiftSchedule"]
 	path = EventShiftSchedule
 	url = https://github.com/MrOerni/EventShiftSchedule
+[submodule "django_event_signup"]
+	path = django_event_signup
+	url = https://github.com/MrOerni/django_event_signup.git
