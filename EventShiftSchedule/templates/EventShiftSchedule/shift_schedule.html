@@ -1,0 +1,77 @@
+{% extends "base_nav.html" %}
+{% load staticfiles %}
+
+{% load schedule_table_tags %}
+
+{% block heading%}
+  <script src="{% static  "EventShiftSchedule/js/main.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+    <h1>{{ event.name }} <small>{{ event.date }}</small></h1>
+  </div>
+  <div class="row">
+    {% for oneTimePos in oneTimePositions %}
+      <div class="col-md-4">
+        <table class="table">
+          <thead>
+          <tr>
+            <th colspan="3">{{ oneTimePos.name }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>{{ oneTimePos.time|date:"l H:i"}}</td>
+            {% otp_table_block oneTimePos user %}
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    {% endfor %}
+  </div>
+  <hr>
+
+  <div class="row shift-schedule">
+    <div class="col-md-12">
+      <table class="table {% if transpose %}table-transposed{% endif %}">
+        <thead>
+        <tr>
+          <th>Zeit</th>
+          {% for position in positions %}
+            <th>{{ position.name }}</th>
+          {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for time in times %}
+          <tr id="row_{{ time.id }}">
+            <td>
+              {% if time.alt_name %}{{ time.alt_name }}
+                {% else %}{{ time.beginning|date:"H:i"}} {% endif %}
+            </td>
+
+            {% for position in positions %}
+              <td>
+                {% table_block time position user %}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <form method="post" target="" action="{% url 'EventShiftSchedule:comment' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="freeTextComment">Kommentar</label>
+        <textarea name='comment-value' class="form-control" rows="2" id="freeTextComment" placeholder="Falls du Besonderheiten anmerken willst!">{{ preset_comment }}</textarea>
+      </div>
+      <input type="hidden" name="event_id" value="{{ event.id }}">
+      <button class="btn btn-primary" type="submit">Kommentar senden</button>
+    </form>
+  </div>
+{% endblock %}

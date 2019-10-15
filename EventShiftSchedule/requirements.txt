@@ -1,0 +1,1 @@
+hypothesis[django]==3.4.2
